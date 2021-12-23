@@ -31,6 +31,9 @@ public class Calificacion {
     @Column(nullable = true)
     private Integer celular;
     
+    public Calificacion() {
+    }
+
     public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, Integer celular) {
         this.setId(id);
         this.setNombre(nombre);

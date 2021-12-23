@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import net.bytebuddy.build.ToStringPlugin.Exclude;
+
 @Entity()
 @Table(name = "usuarios")
 public class Usuario {
@@ -23,6 +25,10 @@ public class Usuario {
 
     @Column(nullable = false)
     private String password;
+
+
+    public Usuario() {
+    }
 
     public Usuario(Long id, String nombre, String username, String password) {
         this.setId(id);
@@ -62,5 +68,6 @@ public class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
+
 
 }
