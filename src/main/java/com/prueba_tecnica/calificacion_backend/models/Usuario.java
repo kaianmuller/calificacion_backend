@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import net.bytebuddy.build.ToStringPlugin.Exclude;
 
 @Entity()
 @Table(name = "usuarios")

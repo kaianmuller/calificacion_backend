@@ -29,26 +29,26 @@ public class Calificacion {
     private String observaciones;
 
     @Column(nullable = true)
-    private Integer celular;
+    private Integer telefono;
     
     public Calificacion() {
     }
 
-    public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, Integer celular) {
+    public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, Integer telefono) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCorreo(correo);
         this.setPuntaje(puntaje);
         this.setObservaciones(observaciones);
-        this.setCelular(celular);
+        this.setTelefono(telefono);
     }
 
-    public Integer getCelular() {
-        return celular;
+    public Integer getTelefono() {
+        return telefono;
     }
 
-    public void setCelular(Integer celular) {
-        this.celular = celular;
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
     }
 
     public String getObservaciones() {
