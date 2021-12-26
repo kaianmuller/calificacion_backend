@@ -2,12 +2,12 @@ package com.prueba_tecnica.calificacion_backend.repositories;
 
 
 
-import com.prueba_tecnica.calificacion_backend.models.Calificacion;
+import com.prueba_tecnica.calificacion_backend.entities.Calificacion;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository()
 public interface CalificacionRepository extends CrudRepository<Calificacion, Long>{
     
 }

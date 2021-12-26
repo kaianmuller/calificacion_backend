@@ -1,40 +1,29 @@
-package com.prueba_tecnica.calificacion_backend.models;
+package com.prueba_tecnica.calificacion_backend.dtos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.prueba_tecnica.calificacion_backend.entities.Calificacion;
 
+public class CalificacionDto {
 
-@Entity()
-@Table(name = "calificaciones")
-public class Calificacion {
-
-    @Id()
-    @GeneratedValue()
-    @Column(unique = true,nullable = false)
     private Long id;
-
-    @Column(nullable = false)
     private String nombre;
-
-    @Column(nullable = false)
     private String correo;
-
-    @Column(nullable = false)
     private Integer puntaje;
-
-    @Column(nullable = true)
     private String observaciones;
-
-    @Column(nullable = true)
     private Integer telefono;
     
-    public Calificacion() {
+    public CalificacionDto() {
     }
 
-    public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, Integer telefono) {
+    public CalificacionDto(Calificacion calificacion) {
+        this.id = calificacion.getId();
+        this.nombre = calificacion.getNombre();
+        this.correo = calificacion.getCorreo();
+        this.puntaje = calificacion.getPuntaje();
+        this.observaciones = calificacion.getObservaciones();
+        this.telefono = calificacion.getTelefono();
+    }
+
+    public CalificacionDto(Long id, String nombre, String correo, Integer puntaje, String observaciones, Integer telefono) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCorreo(correo);

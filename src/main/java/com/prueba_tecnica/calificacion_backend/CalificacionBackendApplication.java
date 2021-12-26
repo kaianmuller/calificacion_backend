@@ -1,5 +1,4 @@
 package com.prueba_tecnica.calificacion_backend;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,4 +9,6 @@ public class CalificacionBackendApplication {
 		SpringApplication.run(CalificacionBackendApplication.class, args);
 	}
 
+
 }
+

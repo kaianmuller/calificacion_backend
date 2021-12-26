@@ -2,7 +2,7 @@ package com.prueba_tecnica.calificacion_backend.controllers;
 
 import java.util.ArrayList;
 
-import com.prueba_tecnica.calificacion_backend.models.Calificacion;
+import com.prueba_tecnica.calificacion_backend.dtos.CalificacionDto;
 import com.prueba_tecnica.calificacion_backend.services.CalificacionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping("/calificaciones")
+@RequestMapping("v1/calificaciones")
 public class CalificacionController {
 
     @Autowired()
@@ -24,18 +24,18 @@ public class CalificacionController {
     
 
     @GetMapping()
-    public ArrayList<Calificacion> getAll(){
-        return (ArrayList<Calificacion>) calificacionService.getAll();
+    public ArrayList<CalificacionDto> getAll(){
+        return  calificacionService.getAll();
     }
 
     @PostMapping()
-    public Calificacion createOne(@RequestBody() Calificacion calificacion){
-        return calificacionService.createOne(calificacion);
+    public boolean createOne(@RequestBody() CalificacionDto calificacionDto){
+        return calificacionService.createOne(calificacionDto);
     }
 
     @PutMapping("/{id}")
-    public Calificacion editOne(@PathVariable(name = "id") Long id, @RequestBody() Calificacion calificacion){
-        return calificacionService.editOne(id,calificacion);
+    public boolean editOne(@PathVariable(name = "id") Long id, @RequestBody() CalificacionDto calificacionDto){
+        return calificacionService.editOne(id,calificacionDto);
     }
 
     @DeleteMapping("/{id}")

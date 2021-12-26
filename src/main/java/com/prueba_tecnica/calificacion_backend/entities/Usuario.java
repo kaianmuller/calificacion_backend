@@ -1,4 +1,6 @@
-package com.prueba_tecnica.calificacion_backend.models;
+package com.prueba_tecnica.calificacion_backend.entities;
+
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,27 +8,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.prueba_tecnica.calificacion_backend.dtos.UsuarioDto;
+
 
 @Entity()
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements Serializable{
     
     @Id()
     @GeneratedValue()
-    @Column(unique = true,nullable = false)
+    @Column(name = "ID",unique = true,nullable = false)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(name = "NOMBRE",nullable = false)
     private String nombre;
 
-    @Column(nullable = false)
+    @Column(name = "USERNAME",nullable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "PASSWORD",nullable = false)
     private String password;
 
 
     public Usuario() {
+    }
+
+    public Usuario(UsuarioDto usuarioDto) {
+        this.id = usuarioDto.getId();
+        this.nombre = usuarioDto.getNombre();
+        this.username = usuarioDto.getUsername();
+        this.password = usuarioDto.getPassword();
     }
 
     public Usuario(Long id, String nombre, String username, String password) {

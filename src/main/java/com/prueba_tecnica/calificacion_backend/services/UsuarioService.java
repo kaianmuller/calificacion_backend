@@ -1,10 +1,13 @@
 package com.prueba_tecnica.calificacion_backend.services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import com.prueba_tecnica.calificacion_backend.models.Usuario;
+import com.prueba_tecnica.calificacion_backend.dtos.UsuarioDto;
+import com.prueba_tecnica.calificacion_backend.entities.Usuario;
 import com.prueba_tecnica.calificacion_backend.repositories.UsuarioRepository;
+import com.prueba_tecnica.calificacion_backend.shared.Utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,32 +20,52 @@ public class UsuarioService {
     @Autowired()
     UsuarioRepository usuarioRepository;
 
-    public ArrayList<Usuario> getAll(){
-        return (ArrayList<Usuario>) usuarioRepository.findAll();
+    public ArrayList<UsuarioDto> getAll(){
+        return (ArrayList<UsuarioDto>) Utils.convertArrayUsuariosToDto((List<Usuario>) usuarioRepository.findAll());
     }
 
-    public Usuario createOne(Usuario usuario){
-        return usuarioRepository.save(usuario);
+    public boolean createOne(UsuarioDto usuarioDto){
+        try {
+               Usuario usuario = new Usuario(usuarioDto);
+               usuarioRepository.save(usuario);
+               return true;
+        } catch (Exception e) {
+            return false;
+        }
+     
     }
 
 
-    public Usuario editOne(Long id, Usuario usuario){
+    public boolean editOne(Long id, UsuarioDto usuarioDto){
+  
+
+        try {
+        Usuario usuario = new Usuario(usuarioDto);
         Optional<Usuario> user = usuarioRepository.findById(id);
         if(!user.isPresent()){
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Elemento no encontrado"
               );
         }
-
-        return usuarioRepository.save(usuario);
+            usuarioRepository.save(usuario);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean deleteOne(Long id){
-        if(id != 0){
+        
+
+        try {
+            if(id != 0){
             usuarioRepository.deleteById(id);
             return true;
+             }
+             return false;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
     }
     
 }

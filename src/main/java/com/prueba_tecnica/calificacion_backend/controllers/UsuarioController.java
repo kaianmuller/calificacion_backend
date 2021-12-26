@@ -2,7 +2,7 @@ package com.prueba_tecnica.calificacion_backend.controllers;
 
 import java.util.ArrayList;
 
-import com.prueba_tecnica.calificacion_backend.models.Usuario;
+import com.prueba_tecnica.calificacion_backend.dtos.UsuarioDto;
 import com.prueba_tecnica.calificacion_backend.services.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,25 +16,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping("/usuarios")
+@RequestMapping("v1/usuarios")
 public class UsuarioController {
 
     @Autowired()
     UsuarioService usuarioService;
 
     @GetMapping()
-    public ArrayList<Usuario> getAll(){
-        return  (ArrayList<Usuario>) usuarioService.getAll();
+    public ArrayList<UsuarioDto> getAll(){
+        return  (ArrayList<UsuarioDto>) usuarioService.getAll();
     }
 
     @PostMapping()
-    public Usuario createOne(@RequestBody() Usuario usuario){
-        return usuarioService.createOne(usuario);
+    public boolean createOne(@RequestBody() UsuarioDto usuarioDto){
+        return usuarioService.createOne(usuarioDto);
+
     }
 
     @PutMapping("/{id}")
-    public Usuario editOne(@PathVariable(name = "id") Long id, @RequestBody() Usuario usuario){
-        return usuarioService.editOne(id,usuario);
+    public boolean editOne(@PathVariable(name = "id") Long id, @RequestBody() UsuarioDto usuarioDto){
+        return usuarioService.editOne(id,usuarioDto);
     }
 
     @DeleteMapping("/{id}")

@@ -1,10 +1,13 @@
 package com.prueba_tecnica.calificacion_backend.services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import com.prueba_tecnica.calificacion_backend.models.Calificacion;
+import com.prueba_tecnica.calificacion_backend.dtos.CalificacionDto;
+import com.prueba_tecnica.calificacion_backend.entities.Calificacion;
 import com.prueba_tecnica.calificacion_backend.repositories.CalificacionRepository;
+import com.prueba_tecnica.calificacion_backend.shared.Utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,32 +21,53 @@ public class CalificacionService {
     @Autowired()
     CalificacionRepository calificacionRepository;
 
-    public ArrayList<Calificacion> getAll(){
-        return (ArrayList<Calificacion>) calificacionRepository.findAll();
+
+    public ArrayList<CalificacionDto> getAll(){
+        return (ArrayList<CalificacionDto>) Utils.convertArrayCalificacionesToDto((List<Calificacion>) calificacionRepository.findAll());
     }
 
-    public Calificacion createOne(Calificacion calificacion){
-        return calificacionRepository.save(calificacion);
+    public boolean createOne(CalificacionDto calificacionDto){
+        try {
+               Calificacion calificacion = new Calificacion(calificacionDto);
+               calificacionRepository.save(calificacion);
+               return true;
+        } catch (Exception e) {
+            return false;
+        }
+     
     }
 
 
-    public Calificacion editOne(Long id, Calificacion calificacion){
-        Optional<Calificacion> calific = calificacionRepository.findById(id);
-        if(!calific.isPresent()){
+    public boolean editOne(Long id, CalificacionDto calificacionDto){
+  
+
+        try {
+        Calificacion calificacion = new Calificacion(calificacionDto);
+        Optional<Calificacion> user = calificacionRepository.findById(id);
+        if(!user.isPresent()){
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Elemento no encontrado"
               );
         }
-
-        return calificacionRepository.save(calificacion);
+            calificacionRepository.save(calificacion);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean deleteOne(Long id){
-        if(id != 0){
+        
+
+        try {
+            if(id != 0){
             calificacionRepository.deleteById(id);
             return true;
+             }
+             return false;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
     }
 
 }
