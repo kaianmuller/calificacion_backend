@@ -9,6 +9,7 @@ public class CalificacionDto {
     private String correo;
     private Integer puntaje;
     private String observaciones;
+    private String empresa;
     private Integer telefono;
     
     public CalificacionDto() {
@@ -20,15 +21,17 @@ public class CalificacionDto {
         this.correo = calificacion.getCorreo();
         this.puntaje = calificacion.getPuntaje();
         this.observaciones = calificacion.getObservaciones();
+        this.empresa = calificacion.getEmpresa();
         this.telefono = calificacion.getTelefono();
     }
 
-    public CalificacionDto(Long id, String nombre, String correo, Integer puntaje, String observaciones, Integer telefono) {
+    public CalificacionDto(Long id, String nombre, String correo, Integer puntaje, String observaciones,String empresa, Integer telefono) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCorreo(correo);
         this.setPuntaje(puntaje);
         this.setObservaciones(observaciones);
+        this.setEmpresa(empresa);
         this.setTelefono(telefono);
     }
 
@@ -38,6 +41,14 @@ public class CalificacionDto {
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
     }
 
     public String getObservaciones() {

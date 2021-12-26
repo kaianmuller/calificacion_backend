@@ -32,6 +32,9 @@ public class Calificacion implements Serializable{
     @Column(name = "OBSERVACIONES",nullable = true)
     private String observaciones;
 
+    @Column(name = "EMPRESA", nullable = true)
+    private String empresa;
+
     @Column(name = "TELEFONO",nullable = true)
     private Integer telefono;
     
@@ -44,15 +47,17 @@ public class Calificacion implements Serializable{
         this.correo = calificacionDto.getCorreo();
         this.puntaje = calificacionDto.getPuntaje();
         this.observaciones = calificacionDto.getObservaciones();
+        this.empresa = calificacionDto.getEmpresa();
         this.telefono = calificacionDto.getTelefono();
     }
 
-    public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, Integer telefono) {
+    public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, String empresa, Integer telefono) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCorreo(correo);
         this.setPuntaje(puntaje);
         this.setObservaciones(observaciones);
+        this.setEmpresa(empresa);
         this.setTelefono(telefono);
     }
 
@@ -62,6 +67,14 @@ public class Calificacion implements Serializable{
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
     }
 
     public String getObservaciones() {
