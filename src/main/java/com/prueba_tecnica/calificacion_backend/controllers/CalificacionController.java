@@ -32,7 +32,6 @@ public class CalificacionController {
 
     @GetMapping("/existCalificacionByCorreo/{correo}")
     public boolean existCalificacionByCorreo(@PathVariable(name = "correo") String correo){
-        System.out.println(correo);
         return  calificacionService.existCalificacionByCorreo(correo);
     }
 

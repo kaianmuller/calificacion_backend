@@ -9,6 +9,9 @@ import com.prueba_tecnica.calificacion_backend.entities.Calificacion;
 import com.prueba_tecnica.calificacion_backend.repositories.CalificacionRepository;
 import com.prueba_tecnica.calificacion_backend.shared.Utils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.annotations.common.util.impl.Log_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,11 +25,15 @@ public class CalificacionService {
     CalificacionRepository calificacionRepository;
 
 
+    private static final Log logger = LogFactory.getLog(CalificacionService.class);
+
     public ArrayList<CalificacionDto> getAll(){
+        logger.info("GET CALIFICACION LIST");
         return (ArrayList<CalificacionDto>) Utils.convertArrayCalificacionesToDto((List<Calificacion>) calificacionRepository.findAll());
     }
 
     public boolean existCalificacionByCorreo(String correo){
+        logger.info("VERIFY CALIFICATION BY CORREO");
         Optional<Calificacion> calific = calificacionRepository.findByCorreo(correo);
         if(!calific.isPresent()){
             return false;
@@ -39,8 +46,10 @@ public class CalificacionService {
         try {
                Calificacion calificacion = new Calificacion(calificacionDto);
                calificacionRepository.save(calificacion);
+               logger.info("CALIFICACION CREADA");
                return true;
         } catch (Exception e) {
+            logger.error("ERROR", e);
             return false;
         }
      
@@ -59,8 +68,10 @@ public class CalificacionService {
               );
         }
             calificacionRepository.save(calificacion);
+            logger.info("CALIFICACION MODIFICADA");
             return true;
         } catch (Exception e) {
+            logger.error("ERROR", e);
             return false;
         }
     }
@@ -71,10 +82,12 @@ public class CalificacionService {
         try {
             if(id != 0){
             calificacionRepository.deleteById(id);
+            logger.info("CALIFICACION ELIMINADA");
             return true;
              }
              return false;
         } catch (Exception e) {
+            logger.error("ERROR", e);
             return false;
         }
     }

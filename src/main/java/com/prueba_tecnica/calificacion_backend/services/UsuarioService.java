@@ -9,6 +9,8 @@ import com.prueba_tecnica.calificacion_backend.entities.Usuario;
 import com.prueba_tecnica.calificacion_backend.repositories.UsuarioRepository;
 import com.prueba_tecnica.calificacion_backend.shared.Utils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,10 @@ public class UsuarioService {
     @Autowired()
     UsuarioRepository usuarioRepository;
 
+    private static final Log logger = LogFactory.getLog(CalificacionService.class);
+
     public ArrayList<UsuarioDto> getAll(){
+        logger.info("GET USUARIO LIST");
         return (ArrayList<UsuarioDto>) Utils.convertArrayUsuariosToDto((List<Usuario>) usuarioRepository.findAll());
     }
 
@@ -28,8 +33,10 @@ public class UsuarioService {
         try {
                Usuario usuario = new Usuario(usuarioDto);
                usuarioRepository.save(usuario);
+               logger.info("USUARIO CREADO");
                return true;
         } catch (Exception e) {
+            logger.error("ERROR", e);
             return false;
         }
      
@@ -48,22 +55,24 @@ public class UsuarioService {
               );
         }
             usuarioRepository.save(usuario);
+            logger.info("USUARIO MODIFICADO");
             return true;
         } catch (Exception e) {
+            logger.error("ERROR", e);
             return false;
         }
     }
 
     public boolean deleteOne(Long id){
-        
-
         try {
             if(id != 0){
             usuarioRepository.deleteById(id);
+            logger.info("USUARIO ELIMINADO");
             return true;
              }
              return false;
         } catch (Exception e) {
+            logger.error("ERROR", e);
             return false;
         }
     }
