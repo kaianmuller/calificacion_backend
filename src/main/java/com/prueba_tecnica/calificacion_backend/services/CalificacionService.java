@@ -26,6 +26,15 @@ public class CalificacionService {
         return (ArrayList<CalificacionDto>) Utils.convertArrayCalificacionesToDto((List<Calificacion>) calificacionRepository.findAll());
     }
 
+    public boolean existCalificacionByCorreo(String correo){
+        Optional<Calificacion> calific = calificacionRepository.findByCorreo(correo);
+        if(!calific.isPresent()){
+            return false;
+        }
+        return true;
+    }
+
+
     public boolean createOne(CalificacionDto calificacionDto){
         try {
                Calificacion calificacion = new Calificacion(calificacionDto);
@@ -43,8 +52,8 @@ public class CalificacionService {
 
         try {
         Calificacion calificacion = new Calificacion(calificacionDto);
-        Optional<Calificacion> user = calificacionRepository.findById(id);
-        if(!user.isPresent()){
+        Optional<Calificacion> calific = calificacionRepository.findById(id);
+        if(!calific.isPresent()){
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Elemento no encontrado"
               );

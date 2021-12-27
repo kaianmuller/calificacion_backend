@@ -30,6 +30,12 @@ public class CalificacionController {
         return  calificacionService.getAll();
     }
 
+    @GetMapping("/existCalificacionByCorreo/{correo}")
+    public boolean existCalificacionByCorreo(@PathVariable(name = "correo") String correo){
+        System.out.println(correo);
+        return  calificacionService.existCalificacionByCorreo(correo);
+    }
+
     @PostMapping()
     public boolean createOne(@RequestBody() CalificacionDto calificacionDto){
         return calificacionService.createOne(calificacionDto);
