@@ -13,21 +13,35 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service()
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService{
 
     @Autowired()
     UsuarioRepository usuarioRepository;
 
     private static final Log logger = LogFactory.getLog(CalificacionService.class);
 
+
+    public UsuarioService(){
+    }
+
     public ArrayList<UsuarioDto> getAll(){
         logger.info("GET USUARIO LIST");
         return (ArrayList<UsuarioDto>) Utils.convertArrayUsuariosToDto((List<Usuario>) usuarioRepository.findAll());
     }
+
+    public Usuario findUsuarioByUsername(String username){
+        return  usuarioRepository.findByUsername(username);
+    }
+
+
 
     public boolean createOne(UsuarioDto usuarioDto){
         try {
@@ -75,6 +89,12 @@ public class UsuarioService {
             logger.error("ERROR", e);
             return false;
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario u = findUsuarioByUsername(username);
+        return new User(u.getUsername(),u.getPassword(),new ArrayList<>());
     }
     
 }

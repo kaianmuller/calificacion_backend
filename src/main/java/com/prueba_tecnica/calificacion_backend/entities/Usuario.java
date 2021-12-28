@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import com.prueba_tecnica.calificacion_backend.dtos.UsuarioDto;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 @Entity()
 @Table(name = "usuarios")
@@ -37,14 +39,14 @@ public class Usuario implements Serializable{
         this.id = usuarioDto.getId();
         this.nombre = usuarioDto.getNombre();
         this.username = usuarioDto.getUsername();
-        this.password = usuarioDto.getPassword();
+        this.password = new BCryptPasswordEncoder().encode(usuarioDto.getPassword());
     }
 
     public Usuario(Long id, String nombre, String username, String password) {
         this.setId(id);
         this.setNombre(nombre);
         this.setUsername(username);
-        this.setPassword(password);
+        this.setPassword(new BCryptPasswordEncoder().encode(password));
     }
 
     public String getPassword() {
