@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController()
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("v1/calificaciones")
@@ -24,7 +25,6 @@ public class CalificacionController {
     @Autowired()
     CalificacionService calificacionService;
     
-
     @GetMapping()
     public ArrayList<CalificacionDto> getAll(){
         return  calificacionService.getAll();
