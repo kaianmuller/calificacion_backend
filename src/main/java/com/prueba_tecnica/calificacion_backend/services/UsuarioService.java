@@ -32,6 +32,7 @@ public class UsuarioService implements UserDetailsService{
     public UsuarioService(){
     }
 
+
     public ArrayList<UsuarioDto> getAll(){
         logger.info("GET USUARIO LIST");
         return (ArrayList<UsuarioDto>) Utils.convertArrayUsuariosToDto((List<Usuario>) usuarioRepository.findAll());

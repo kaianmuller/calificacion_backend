@@ -26,6 +26,14 @@ public class CalificacionService {
 
     private static final Log logger = LogFactory.getLog(CalificacionService.class);
 
+
+
+    public Long getCount(){
+        logger.info("GET CALIFICACION COUNT");
+        return  calificacionRepository.count();
+    }
+
+
     public ArrayList<CalificacionDto> getAll(){
         logger.info("GET CALIFICACION LIST");
         return (ArrayList<CalificacionDto>) Utils.convertArrayCalificacionesToDto((List<Calificacion>) calificacionRepository.findAll());

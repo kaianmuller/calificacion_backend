@@ -35,6 +35,11 @@ public class CalificacionController {
         return  calificacionService.existCalificacionByCorreo(correo);
     }
 
+    @GetMapping("/count")
+    public Long getCount(){
+        return  calificacionService.getCount();
+    }
+
     @PostMapping()
     public boolean createOne(@RequestBody() CalificacionDto calificacionDto){
         return calificacionService.createOne(calificacionDto);
