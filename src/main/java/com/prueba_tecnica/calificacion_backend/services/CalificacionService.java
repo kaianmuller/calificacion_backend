@@ -34,6 +34,16 @@ public class CalificacionService {
         return  calificacionRepository.count();
     }
 
+    public Long getMean(){
+        logger.info("GET CALIFICACION MEAN");
+        List<Calificacion> list = (List<Calificacion>) calificacionRepository.findAll();
+        Long suma = 0L;
+        for(Calificacion c: list){
+        suma+=c.getPuntaje();
+        }
+        return suma/getCount();
+    }
+
 
     public ArrayList<CalificacionDto> getAll(){
         logger.info("GET CALIFICACION LIST");

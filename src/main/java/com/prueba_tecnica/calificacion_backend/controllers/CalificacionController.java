@@ -41,6 +41,11 @@ public class CalificacionController {
         return  calificacionService.getCount();
     }
 
+    @GetMapping("/mean")
+    public Long getMean(){
+        return  calificacionService.getMean();
+    }
+
     @PostMapping()
     public boolean createOne(@RequestBody() CalificacionDto calificacionDto){
         return calificacionService.createOne(calificacionDto);
