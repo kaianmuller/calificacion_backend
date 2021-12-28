@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prueba_tecnica.calificacion_backend.constants.Constants;
 
 import org.json.JSONObject;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -56,8 +57,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String token = JWT.create()
                 .withSubject(auth.getName())
-                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
-                .sign(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()));
+                .withExpiresAt(new Date(System.currentTimeMillis() + Constants.EXPIRATION_TIME))
+                .sign(Algorithm.HMAC512(Constants.SECRET.getBytes()));
 
                 JSONObject body = new JSONObject();
                 body.put("token", token);

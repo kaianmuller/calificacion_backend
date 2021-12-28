@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+
+
+
+#CONSTANTS
+.src/main/java/com/prueba_tecnica/calificacion_backend/constants/
