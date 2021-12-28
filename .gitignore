@@ -37,4 +37,4 @@ build/
 
 
 #CONSTANTS
-.src/main/java/com/prueba_tecnica/calificacion_backend/constants/
+src/main/java/com/prueba_tecnica/calificacion_backend/constants
