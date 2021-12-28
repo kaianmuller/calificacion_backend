@@ -6,6 +6,7 @@ import com.prueba_tecnica.calificacion_backend.dtos.CalificacionDto;
 import com.prueba_tecnica.calificacion_backend.services.CalificacionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class CalificacionController {
     CalificacionService calificacionService;
     
     @GetMapping()
-    public ArrayList<CalificacionDto> getAll(){
-        return  calificacionService.getAll();
+    public ArrayList<CalificacionDto> getAll(Pageable pageable){
+        return  calificacionService.getAllWithPagination(pageable);
     }
 
     @GetMapping("/existCalificacionByCorreo/{correo}")

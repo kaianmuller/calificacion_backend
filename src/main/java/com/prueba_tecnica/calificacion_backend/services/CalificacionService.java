@@ -12,6 +12,7 @@ import com.prueba_tecnica.calificacion_backend.shared.Utils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -37,6 +38,11 @@ public class CalificacionService {
     public ArrayList<CalificacionDto> getAll(){
         logger.info("GET CALIFICACION LIST");
         return (ArrayList<CalificacionDto>) Utils.convertArrayCalificacionesToDto((List<Calificacion>) calificacionRepository.findAll());
+    }
+
+    public ArrayList<CalificacionDto> getAllWithPagination(Pageable pageable){
+        logger.info("GET CALIFICACION LIST WITH PAGINATION");
+        return (ArrayList<CalificacionDto>) Utils.convertArrayCalificacionesToDto((List<Calificacion>) calificacionRepository.findAll(pageable).getContent());
     }
 
     public boolean existCalificacionByCorreo(String correo){

@@ -10,7 +10,7 @@ public class CalificacionDto {
     private Integer puntaje;
     private String observaciones;
     private String empresa;
-    private Integer telefono;
+    private Long telefono;
     
     public CalificacionDto() {
     }
@@ -25,7 +25,7 @@ public class CalificacionDto {
         this.telefono = calificacion.getTelefono();
     }
 
-    public CalificacionDto(Long id, String nombre, String correo, Integer puntaje, String observaciones,String empresa, Integer telefono) {
+    public CalificacionDto(Long id, String nombre, String correo, Integer puntaje, String observaciones,String empresa, Long telefono) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCorreo(correo);
@@ -35,11 +35,11 @@ public class CalificacionDto {
         this.setTelefono(telefono);
     }
 
-    public Integer getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 

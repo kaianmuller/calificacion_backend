@@ -36,7 +36,7 @@ public class Calificacion implements Serializable{
     private String empresa;
 
     @Column(name = "TELEFONO",nullable = true)
-    private Integer telefono;
+    private Long telefono;
     
     public Calificacion() {
     }
@@ -51,7 +51,7 @@ public class Calificacion implements Serializable{
         this.telefono = calificacionDto.getTelefono();
     }
 
-    public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, String empresa, Integer telefono) {
+    public Calificacion(Long id, String nombre, String correo, Integer puntaje, String observaciones, String empresa, Long telefono) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCorreo(correo);
@@ -61,11 +61,11 @@ public class Calificacion implements Serializable{
         this.setTelefono(telefono);
     }
 
-    public Integer getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
