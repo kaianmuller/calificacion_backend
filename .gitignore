@@ -35,4 +35,4 @@ build/
 
 
 #CONSTANTS
-/src/main/java/com/prueba_tecnica/calificacion_backend/constants/Constants.java
+#/src/main/java/com/prueba_tecnica/calificacion_backend/constants/Constants.java
